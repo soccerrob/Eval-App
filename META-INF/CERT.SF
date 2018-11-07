@@ -1,0 +1,297 @@
+Signature-Version: 1.0
+X-Android-APK-Signed: 2
+SHA1-Digest-Manifest: IckC4piFK3N+sU0cJg45wrBYEJ4=
+Created-By: 1.0 (Android)
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileUploadOptions.js
+SHA1-Digest: k7bbm5X8Y56c2aAbhRfuVLpYdJg=
+
+Name: assets/www/cordova-js-src/platform.js
+SHA1-Digest: /mJ5H2qTR9Bi2LjUspEVgxlBB+g=
+
+Name: res/drawable-port-ldpi-v4/screen.png
+SHA1-Digest: 0xgQIHIbfOrpLeNb8Awy2KsX/rk=
+
+Name: assets/www/plugins/cordova-plugin-file/www/Metadata.js
+SHA1-Digest: pqzoWRD3wVB3Ye75cqlJS0MJse8=
+
+Name: assets/www/fonts/FontAwesome.otf
+SHA1-Digest: QsF57vWIhUtewVG89qP1iqi3mxE=
+
+Name: assets/www/fonts/glyphicons-halflings-regular.eot
+SHA1-Digest: hrb2K3hT5n0+Y19lEqWl78WOo8M=
+
+Name: assets/www/fonts/Roboto-Regular-webfont.svg
+SHA1-Digest: dGWOgGLCMG1Xo4hdVYMa0uKEHA0=
+
+Name: assets/www/cordova.js
+SHA1-Digest: nCXQXGTABPKuxHdrNk7q/Al4YFY=
+
+Name: res/drawable-hdpi-v4/icon.png
+SHA1-Digest: 0c41TmMPjF7lhKPDpffWYQgh7sE=
+
+Name: res/drawable-land-xhdpi-v4/screen.png
+SHA1-Digest: Eme1m+KzdcxmzKWK1Sn3tLqwBxk=
+
+Name: assets/www/fonts/roboto-light-webfont.woff2
+SHA1-Digest: v8tVJ/KHz+06T1NCU0JiL+w+D8o=
+
+Name: assets/www/assets/caret.png
+SHA1-Digest: LfEohGc81xL3a38tC8ATlWJvNZw=
+
+Name: assets/www/fonts/WFCMobile.woff
+SHA1-Digest: QcYSmQ6fZv/7gsWMrKQLK34VHLE=
+
+Name: assets/www/plugins/cordova-plugin-file/www/Flags.js
+SHA1-Digest: Kq4I7bhahaHdmrw3ta/mr/wKPmo=
+
+Name: assets/www/plugins/cordova-plugin-email-composer/www/email_compo
+ ser.js
+SHA1-Digest: 49N6AhdGVftmQp6MPSQq/2tUEWM=
+
+Name: assets/www/fonts/Roboto-Medium-webfont.eot
+SHA1-Digest: FRf0tuHF0OUZj5N1VyU6rI+rBBY=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileEntry.js
+SHA1-Digest: Xde5Q4czm4qjtxdCAEGbrFkELcY=
+
+Name: assets/www/fonts/Roboto-Regular-webfont.ttf
+SHA1-Digest: 9wfpitL3y+k30UU3QoYw+rqaHTM=
+
+Name: assets/www/js/SpinnerDialog.js
+SHA1-Digest: IyPbZbIkcKG6akFobuo7dHp5wNQ=
+
+Name: assets/www/plugins/cordova-plugin-dialogs/www/notification.js
+SHA1-Digest: 40N9ub1TTHereKbVRJir+eJLDSY=
+
+Name: assets/www/fonts/WFCMobile.eot
+SHA1-Digest: bQDq5OhqrNWrnkZBQP5Xlmhclro=
+
+Name: assets/www/cordova-js-src/plugin/android/app.js
+SHA1-Digest: f7p1rHw6kBqunadJYz5vUi7ZElM=
+
+Name: assets/www/plugins/cordova-plugin-file/www/DirectoryReader.js
+SHA1-Digest: DYl5STMossCo91No/ZA3GWcZekI=
+
+Name: assets/www/index.html
+SHA1-Digest: yC8j7ch/R4HxtVQRbvta7FzK9nM=
+
+Name: assets/www/fonts/fontawesome-webfont.woff
+SHA1-Digest: SjE+uTuVnMQVTGhLkVsKMd22jYQ=
+
+Name: assets/www/css/styles.min.css
+SHA1-Digest: 72wYXTahMz0/CiZmH+NU+X6wXfg=
+
+Name: assets/www/plugins/cordova-plugin-email/www/email_composer.js
+SHA1-Digest: Ie9ssYlHB39MeICWZEu7ek/Qw4Q=
+
+Name: assets/www/cordova-js-src/android/promptbasednativeapi.js
+SHA1-Digest: WY63KRIwUfBJT7ADJajHaAGlUMA=
+
+Name: assets/www/fonts/fontawesome-webfont.eot
+SHA1-Digest: mG7tjcoElxTkPu68s5MnQaS+x20=
+
+Name: assets/www/plugins/cordova-plugin-file/www/resolveLocalFileSyste
+ mURI.js
+SHA1-Digest: T1t7ZcY0U+V6tPD8c7TI2s4U6Ek=
+
+Name: assets/www/plugins/cordova-plugin-file/www/requestFileSystem.js
+SHA1-Digest: PSYsPOmpAzk7eU5QSM85pN0XEoU=
+
+Name: assets/www/plugins/cordova-plugin-file/www/fileSystems-roots.js
+SHA1-Digest: +kdK5fdjowLxjWU1YUAF6ol71dY=
+
+Name: assets/www/plugins/cordova-plugin-file/www/fileSystems.js
+SHA1-Digest: siqwQ3nESGRBBeRWxurbyvc/TPA=
+
+Name: assets/www/fonts/Roboto-Medium-webfont.woff
+SHA1-Digest: eTb5pmkMBM7CDN07Jwvag6YTWCs=
+
+Name: assets/www/fonts/glyphicons-halflings-regular.ttf
+SHA1-Digest: RLwYUPVwlyJnsWmuGPHLBrYR/6I=
+
+Name: res/drawable-xhdpi-v4/icon.png
+SHA1-Digest: bHcUENu53fcAzl9/cqJyhCXNRh0=
+
+Name: assets/www/fonts/Roboto-Regular-webfont.eot
+SHA1-Digest: d64+mA7AOGPr4lh6jvnd/QaUHbA=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileWriter.js
+SHA1-Digest: 0y0naClelzbizvWpktsgQrsSwNs=
+
+Name: assets/www/plugins/cordova-plugin-file/www/Entry.js
+SHA1-Digest: YPBsoB0TKEhFaAIOiV9jPaoIeVA=
+
+Name: assets/www/fonts/glyphicons-halflings-regular.woff2
+SHA1-Digest: yjW2l9mcrk0bYPLWD803dxmH6wc=
+
+Name: assets/www/fonts/Roboto-Regular-webfont.woff
+SHA1-Digest: mdk+HjY2+GyFsMfE2iB3tPHuAQw=
+
+Name: res/drawable-land-mdpi-v4/screen.png
+SHA1-Digest: YVTonnvTeGj2Yhf0CYjFyC55TZE=
+
+Name: resources.arsc
+SHA1-Digest: et4xGZp4mHdLw3tmP+0wuVSy0b8=
+
+Name: assets/www/plugins/cordova-plugin-file/www/android/FileSystem.js
+SHA1-Digest: fiaWqIbFa6PiJyCq9zrflrstxVE=
+
+Name: assets/www/plugins/cordova-plugin-dialogs/www/android/notificati
+ on.js
+SHA1-Digest: QDJ4/bi0oU0Bq0+2hMMPG7rRKOk=
+
+Name: assets/www/cordova_plugins.js
+SHA1-Digest: NH8TpCPjuzytu2DA877eeM6SHes=
+
+Name: assets/www/plugins/cordova-plugin-device/www/device.js
+SHA1-Digest: DgD9WKGqlbNViEZBSi4Wenbl/uM=
+
+Name: assets/www/plugins/cordova-plugin-file/www/LocalFileSystem.js
+SHA1-Digest: kJtPgG7aLCq5neelEB+/sObHR1w=
+
+Name: assets/www/fonts/WFCMobile.ttf
+SHA1-Digest: 9aLsdyO5ay7fj2nuZv6uABhzlmM=
+
+Name: AndroidManifest.xml
+SHA1-Digest: oBgPnMMef+Fi470Em9K73qfghy4=
+
+Name: assets/www/plugins/cordova-plugin-file/www/ProgressEvent.js
+SHA1-Digest: 8EDoYQM36CDHLN2HHLyX9yPgFuQ=
+
+Name: assets/www/plugins/cordova-plugin-x-toast/www/Toast.js
+SHA1-Digest: 8wVjV/iQqxNoUh54TWsTnspILrc=
+
+Name: assets/www/fonts/Roboto-Bold-webfont.woff
+SHA1-Digest: 2kAy+eCpdTSJpY+BvwKTDtaVLgQ=
+
+Name: assets/www/fonts/WFCMobile.svg
+SHA1-Digest: 4bFguCHaSFDrUqMNHodr8OYJf8E=
+
+Name: assets/www/plugins/cordova-plugin-file/www/DirectoryEntry.js
+SHA1-Digest: upDqTS0QG2I+KMTEClqoWWCw/ms=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileError.js
+SHA1-Digest: UvOEHmW81EyAwfdk8R1YeXQArlo=
+
+Name: res/drawable-ldpi-v4/icon.png
+SHA1-Digest: W7MEUoHa/jQ3iSBhdSFooBkBQ08=
+
+Name: assets/www/cordova-js-src/android/nativeapiprovider.js
+SHA1-Digest: FVwW8q5pXNyqdiSUoAgfev5NTHs=
+
+Name: res/drawable-land-hdpi-v4/screen.png
+SHA1-Digest: SnEeLBNJPYyr+znAdl3VZcz93hY=
+
+Name: assets/www/fonts/Roboto-Medium-webfont.ttf
+SHA1-Digest: TLNA43nZv9/PqGbIVBXpfodwm9U=
+
+Name: assets/www/plugins/cordova-plugin-file/www/File.js
+SHA1-Digest: TIV39VI5wIdt6jaFcIZqkGpaHgE=
+
+Name: res/xml/config.xml
+SHA1-Digest: HlG50yh71scmn+11NoGyV6b2zbQ=
+
+Name: assets/www/js/libs.min.js
+SHA1-Digest: hj4gfDVm+OIn9LiQU29vEkGRs3g=
+
+Name: assets/www/fonts/fontawesome-webfont.ttf
+SHA1-Digest: ZITxr2tIXVCWtxs0Tmf0Fkwz3R8=
+
+Name: assets/www/js/app.min.js
+SHA1-Digest: mm7wF2umUHCZ5DkB2gvsbqlPla8=
+
+Name: res/drawable-port-hdpi-v4/screen.png
+SHA1-Digest: QqszXVs7DAO7cpkZYgDYRx2o7mQ=
+
+Name: assets/www/fonts/fontawesome-webfont.svg
+SHA1-Digest: sGtcj2f9YyzcYqM7Yq5PdBlBMbM=
+
+Name: assets/www/fonts/Roboto-Medium-webfont.svg
+SHA1-Digest: kTg8MXPgvCf+e2QbMDZf9Q2N2XQ=
+
+Name: assets/www/fonts/roboto-light-webfont.svg
+SHA1-Digest: EKlf/gkED0189EJ00RyR/UnO5PU=
+
+Name: assets/www/plugins/cordova-plugin-x-toast/test/tests.js
+SHA1-Digest: kPbNySuQFIFQD3LOyDeahvAX2mM=
+
+Name: assets/www/fonts/glyphicons-halflings-regular.svg
+SHA1-Digest: 3lGoSUGAptsHSvLe4jg/CjY8Wwg=
+
+Name: assets/www/fonts/roboto-light-webfont.ttf
+SHA1-Digest: cT6HSGWLd8dEuTELP1LUbfd8QnQ=
+
+Name: assets/www/fonts/glyphicons-halflings-regular.woff
+SHA1-Digest: J45JqG5jTabyoC87R92dKo8mIQ8=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileReader.js
+SHA1-Digest: tsXpu4c0JyAPn8rEjlAl9tHnCIU=
+
+Name: assets/www/fonts/Roboto-Bold-webfont.eot
+SHA1-Digest: p2zWAvUYi5+9S6dEPcucBk49vxA=
+
+Name: assets/www/fonts/roboto-light-webfont.woff
+SHA1-Digest: 6wh18W0BQvL0YGlZBp2BmX6so+A=
+
+Name: assets/www/fonts/Roboto-Bold-webfont.svg
+SHA1-Digest: +7RtoczaVLS1uEKHWY+pLPSHPO0=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileUploadResult.js
+SHA1-Digest: NWG6PP39UTJH+OLgtQdqeQSipPE=
+
+Name: assets/www/plugins/cordova-plugin-file/www/FileSystem.js
+SHA1-Digest: +3PybRYzIh8dDSeTXmYx219qhbk=
+
+Name: assets/www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js
+SHA1-Digest: tMgveismsttt4btYoFLFN4E4DBQ=
+
+Name: assets/www/fonts/Roboto-Bold-webfont.ttf
+SHA1-Digest: 4fmN8HUymHN6WdEO49J22vFmwFI=
+
+Name: assets/www/assets/close.png
+SHA1-Digest: rDObxlRv3FJUV07LWDOeH3OCqp0=
+
+Name: assets/www/fonts/manageRequests.ttf
+SHA1-Digest: LXBjWnu5RJMd6rzCW4BDkC9cIMA=
+
+Name: assets/www/plugins/cordova-plugin-file/www/browser/isChrome.js
+SHA1-Digest: ubIP1VXq/ILYzY1GaBx+PA7ZEEo=
+
+Name: res/drawable-land-ldpi-v4/screen.png
+SHA1-Digest: ZfZgMgv6EzcmpS1oX2OZ+2L3Xg4=
+
+Name: res/drawable-port-xhdpi-v4/screen.png
+SHA1-Digest: vFPeQjaqLAS6sZilCZUrPyl6jrw=
+
+Name: assets/www/fonts/manageRequests.woff
+SHA1-Digest: tKdnyTpA+nktenjHBgYIH8MKxyY=
+
+Name: assets/www/fonts/fontawesome-webfont.woff2
+SHA1-Digest: Y4xlLWIygKWBRPk+e1UsZtFmehE=
+
+Name: assets/www/fonts/manageRequests.svg
+SHA1-Digest: ifh2GrsL61NvpcB2EOkIDxD9zJk=
+
+Name: assets/www/fonts/roboto-light-webfont.eot
+SHA1-Digest: UwdRVux0sWhoa/gHw2MTHlJ2aNs=
+
+Name: res/drawable-mdpi-v4/icon.png
+SHA1-Digest: 43pi/Wiqe8LPIpnf0hFXv8FOTKg=
+
+Name: assets/www/cordova-js-src/exec.js
+SHA1-Digest: A7BC4etS9bFIzKKjf8xg4jH3oqM=
+
+Name: assets/www/plugins/cordova-plugin-file/www/fileSystemPaths.js
+SHA1-Digest: MGrgin0kJf1jZwNmX+pkyVb5CXc=
+
+Name: res/drawable-port-mdpi-v4/screen.png
+SHA1-Digest: sxAwXdVywEzRhoLTIW6klU4WHHE=
+
+Name: classes.dex
+SHA1-Digest: KauM6X/qhhi5r6OLP8+OKOanK4o=
+
+Name: assets/www/plugins/com.filfatstudios.spinnerdialog/www/SpinnerDi
+ alog.js
+SHA1-Digest: MWhOixlImu+HcKN1+EBbSLyR4vk=
+

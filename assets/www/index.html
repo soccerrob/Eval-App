@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"/>
+    <!-- ask Chris about these -->
+    <!--,maximum-scale=1.0, minimum-scale=1.0,  height=device-height-->
+    <link rel="stylesheet" href="css/styles.min.css">
+    <title>Evaluation Night</title>
+</head>
+
+<body class="text-center">
+
+<!--Modules Container-->
+
+<div ng-cloak krn-wrapper style="text-align: center;" ng-controller="MainController">
+    <div class="container-fluid">
+        <h3 ng-click="counterAdmin(1)">SYSA Evaluations</h3>
+        <div class="row">
+            <div class="col-sm-5">
+                <h4 style="display: inline;">Session: {{sessionSelected.sessionName}}</h4>
+            </div>
+            <div class="col-sm-7">
+                <h4 style="display: inline;" ng-show="sessionSelected">Sheet:
+                    <select ng-show="sheetSelected" class="form-inline" ng-model="sheetSelected"
+                            ng-options="s as s.sheetName for s in sessionSelected.sheets | orderBy:'sheetName'"
+                            ng-change="loadSheetData()" ng-change="changeBlur()"></select>
+                    <button class="btn btn-primary"
+                            ng-click="initSheetModal(); toggleCreateSheet()">Create
+                    </button>
+                </h4>
+            </div>
+        <!-- form-inline vs form-control makes the box look small-->
+        </div>
+        <div class="row" ng-show="sheetSelected">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" ng-click="toggleCreatePlayers()">Add Players</button>
+            </div>
+            <!-- Allow splitting into 2 rows (for small screen) -->
+            <div ng-repeat="team in sheetSelected.teams">
+                <div class="col-sm-6" class="tbl">
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>{{team}}</th>
+                            <th ng-repeat="cat in sheetSelected.categories">{{cat}}</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in sheetSelected.playerData | orderBy:'id'"
+                            ng-if="p.team==team">
+                            <!-- <td ng-click="handlePlayer(p)">{{p.id}}</td> -->
+                            <td ng-click="handleRatings(p)">{{p.id}}</td>
+                            <td ng-repeat="cat in sheetSelected.categories" ng-click="handleRatings(p)">
+                                {{p.ratings[cat]}}
+                            </td>
+                            <td>
+                                <button ng-click="deletePlayer(p)" class="redBtn">
+                                    <i class="glyphicon glyphicon-remove"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="sheetSelected">
+            <div class="col-sm-12">
+                <div>
+                    <form class="form-inline" name="commentsForm">
+                        <h4><label for="comments">Comments</label>&nbsp;<small>(Maximum length = 200)</small></h4>
+                        <textarea style="width:90%" class="form-control" name="comments" id="comments"
+                                  ng-model="sheetSelected.comments" ng-change="monitorLength(200)"></textarea>
+                        <!-- span ng-show="commentsForm.comments.$error.maxlength" class="text-danger">
+                            <br>Maximum length has been exceeded!
+                        </span -->
+                    </form>
+                    <!-- style="width:90%"
+                    Try to use Submit button so the behavior is similar to other input fields -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <div ng-show="debug">
+            sessionSelected = {{sessionSelected}} <br>
+            newSession = {{newSession}} <br>
+            sheetSelected = {{sheetSelected}} <br>
+            newSheet = {{newSheet}} <br>
+            playerDataSelected = {{playerDataSelected}} <br>
+            newPlayerData = {{newPlayerData}} <br>
+            data = {{data}}
+        </div>
+    </div>
+
+    <!--create ModalSession-->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="createModalSession">
+        <span class="modals-close-btn" ng-click="toggleCreateSession()"></span>
+        <!-- div with float and right for close button -->
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3 ng-click="counterDebug(1)">Admin Configuration</h3>
+                <h4>Create A Session</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <button class="btn btn-primary"
+                                ng-click="editSessionName(dateMMdd + '_4-6pm')">{{dateMMdd + '_4-6pm'}}
+                        </button>
+                        <button class="btn btn-primary"
+                                ng-click="editSessionName(dateMMdd + '_6-8pm')">{{dateMMdd + '_6-8pm'}}
+                        </button>
+                        <button class="btn btn-danger"
+                                ng-click="editSessionName('')">Clear
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <form class="form-inline" role="form" name="sessionForm">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="sessionName" id="sessionName"
+                                       ng-model="newSession.sessionName" ng-maxlength="25" ng-pattern="nameRegex"
+                                       ng-trim="false"
+                                       required novalidate/>
+                                <span class="input-group-btn">
+                                <button ng-disabled="sessionForm.sessionName.$invalid"
+                                        class="btn btn-primary" ng-click="createSession()">Create
+                                </button>
+                            </span>
+                            </div>
+                            <span ng-show="sessionForm.sessionName.$error.pattern" class="text-danger">
+                            <br>Only letters, numbers, "-", or "_" are allowed!
+                            </span>
+                            <span ng-show="sessionForm.sessionName.$error.maxlength" class="text-danger">
+                            <br>Maximum length has been exceeded!
+                        </span>
+                        </form>
+                    </div>
+                </div>
+                <div ng-show="data.sessions.length > 0">
+                    <h4>Select A Session</h4>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <select class="form-control"
+                                        ng-model="sessionSelected"
+                                        ng-options="s as s.sessionName for s in data.sessions | orderBy:'sessionName'"
+                                        ng-change="loadSessionData()" ng-change="changeBlur()">
+                                </select>
+                                <span class="input-group-btn">
+                                <div ng-show="sessionSelected">
+                                    <button class="btn btn-primary" ng-click="toggleCreateSession()">Done</button>
+                                </div>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h4>Evaluation Data</h4>
+                    <button class="btn btn-success" ng-click="saveToCsv(false)">Backup to Spreadsheet</button>
+                    <button ng-show="emailAvailable" class="btn btn-success" ng-click="saveToCsv(true)">Backup and Email</button>
+                </div>
+                <div ng-show="debug">
+                    csv = {{csv}}
+                    sessionSelected = {{sessionSelected}} <br>
+                    newSession = {{newSession}} <br>
+                    data = {{data}} <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--create ModalSheet -->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="createModalSheet">
+        <span class="modals-close-btn" ng-click="nullCreateSheetData(); toggleCreateSheet()"></span>
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3>Create A Sheet</h3>
+                <fieldset>
+                    <h4><label>Type</label>
+                        <button ng-repeat="e in evalList"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newSheet.eType==e]"
+                                ng-click="nullCreateSheetData(); editEvalType(e)">{{e}}
+                        </button>
+                    </h4>
+                </fieldset>
+                <span ng-if="newSheet.eType && (newSheet.eType != 'Custom')">
+                <fieldset ng-show="teamChoices.length > 0"> <!-- ng-disabled="!newSheet.eType"> -->
+                    <h4>Teams
+                        <button ng-repeat="t in teamChoices"
+                                ng-disabled="(newSheet.teams.length >= 2) && (newSheet.teams.indexOf(t) === -1)"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[(newSheet.teams.indexOf(t) != -1)]"
+                                ng-click="teamsSelectedToggle(t)">{{t}} <!-- " && (newSheet.eType != 'Custom')" -->
+                        </button>
+                    </h4>
+                </fieldset>
+                <fieldset ng-show="gradeList.length > 0">
+                    <h4>Grade
+                        <button ng-repeat="g in gradeList"
+                                ng-disabled="newSheet.teams.length < 2"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newSheet.grade==g]"
+                                ng-click="editGrade(g)">{{g}}
+                        </button>
+                    </h4>
+               </fieldset>
+                <fieldset ng-show="genderList.length > 0">
+                    <h4>Gender
+                        <button ng-repeat="g in genderList"
+                                ng-disabled="!newSheet.grade || (newSheet.teams.length < 2)"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newSheet.gender==g]"
+                                ng-click="editGender(g)">{{g}}
+                        </button>
+                    </h4>
+                </fieldset>
+                <fieldset ng-show="sfbList.length > 0">
+                  <h4>Field
+                        <button ng-repeat="s in sfbList"
+                                ng-disabled="!newSheet.gender || (newSheet.teams.length < 2)"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newSheet.field==s]"
+                                ng-click="editStation(s)">{{s}}
+                        </button>
+                   </h4>
+                </fieldset>
+                <fieldset ng-show="groupList.length > 0">
+                    <h4>Group
+                        <button ng-repeat="g in groupList"
+                                ng-disabled="!newSheet.field || (newSheet.teams.length < 2)"
+                                ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newSheet.group==g]"
+                                ng-click="editGroup(g)">{{g}}
+                        </button>
+                    </h4>
+                </fieldset>
+                <fieldset>
+                    <form class="form-inline" role="form" name="sheetForm">
+                        <h4><label for="newSheetNameSuffix">Name</label>
+                            <span class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    {{newSheet.grade}}{{newSheet.gender}}{{newSheet.eType}}{{newSheet.field}}{{newSheet.group}}
+                                </span>
+                                <input type="text" class="form-control" name="newSheetNameSuffix"
+                                       id="newSheetNameSuffix"
+                                       ng-model="newSheetNameSuffix" ng-maxlength="10" ng-pattern="suffixRegex"
+                                       ng-trim="false"
+                                       placeholder="optional suffix" novalidate/>
+                            </span>
+                            <button class="btn btn-danger" ng-click="nullCreateSheetData()">Clear</button>
+                            <button ng-disabled="sheetForm.newSheetNameSuffix.$invalid || (newSheet.teams.length < 2)
+                                        || !newSheet.grade || !newSheet.gender || !newSheet.field 
+                                        || (!newSheet.group && (newSheet.eType == 'Night1'))"
+                                    class="btn btn-primary"
+                                    ng-click="createSheet(newSheet.grade+newSheet.gender+newSheet.eType+newSheet.field+newSheet.group+newSheetNameSuffix)">Create
+                            </button>
+                        </h4>
+                        <span ng-show="sheetForm.newSheetNameSuffix.$error.pattern" class="text-danger">
+                            Only letters, numbers, "-", or "_" are allowed!
+                        </span>
+                        <span ng-show="sheetForm.newSheetNameSuffix.$error.maxlength" class="text-danger">
+                            Maximum length has been exceeded!
+                        </span>
+                   </form>
+                </fieldset>
+            </span>
+                <span ng-if="newSheet.eType == 'Custom'">
+                <fieldset>
+                    <form class="form-inline" role="form" name="sheetForm">
+                        <h4><label for="teamsList">Teams</label>
+                            <input type="text" class="form-control" name="teamsList" id="teamsList"
+                                   ng-model="newSheet.teams" ng-list ng-pattern="teamListRegex" ng-maxlength="40"
+                                   required novalidate/>
+                        </h4>
+                        <span ng-show="sheetForm.teamsList.$error.pattern" class="text-danger">
+                            Team names must consist of letters, numbers, "-", or "_" and must be comma-separated.
+                        </span>
+                        <span ng-show="sheetForm.teamsList.$error.maxlength" class="text-danger">
+                            Maximum length has been exceeded!
+                        </span>
+                        <!-- <span ng-show="hasDuplicates(newSheet.teams)" class="text-danger">
+                               Team names cannot have duplicates.
+                        </span> -->
+                        <h4><label for="categories">Categories</label>
+                            <input type="text" class="form-control" name="categories" id="categories"
+                                   ng-model="newSheet.categories" ng-list ng-pattern="catListRegex"
+                                   required novalidate/>
+                        </h4>
+                        <span ng-show="sheetForm.categories.$error.pattern" class="text-danger">
+                            Categories (max=15) must consist of 1-5 letters and/or numbers and must be comma-separated.
+                        </span>
+                        <h4><label for="ratingValues">Ratings</label>
+                            <input type="text" class="form-control" name="ratingValues" id="ratingValues"
+                                   ng-model="newSheet.ratingValues" ng-list ng-pattern="ratingValuesRegex"
+                                   required novalidate/>
+                            <br>
+                            <small>Lowest to Highest</small>
+                        </h4>
+                        <span ng-show="sheetForm.ratingValues.$error.pattern" class="text-danger">
+                            Ratings must consist of the numbers 1-10 and must be comma-separated.
+                        </span>
+                        <h4><label for="ratingTip">Ratings Tip</label>
+                            <input type="text" class="form-control" name="ratingTip" id="ratingTip"
+                                   ng-model="newSheet.ratingTip" ng-maxlength="100" novalidate/>
+                        </h4>
+                        <span ng-show="sheetForm.ratingTip.$error.maxlength" class="text-danger">
+                            <br>Maximum length has been exceeded!
+                        </span>
+                        <h4><label for="newSheetNameSuffixC">Name</label>
+                            <span class="input-group">
+                                <span class="input-group-addon" id="basic-addon2">Custom</span>
+                                <input type="text" class="form-control" name="newSheetNameSuffixC"
+                                       id="newSheetNameSuffixC"
+                                       ng-model="newSheetNameSuffixC" ng-maxlength="30" ng-pattern="suffixRegex"
+                                       ng-trim="false"
+                                       placeholder="optional suffix" novalidate/>
+                            </span>
+                            <button class="btn btn-danger" ng-click="nullCreateSheetData()">Clear</button>
+                            <button ng-disabled="sheetForm.newSheetNameSuffixC.$invalid || sheetForm.teamsList.$invalid
+                                        || sheetForm.categories.$invalid || sheetForm.ratingValues.$invalid"
+                                    class="btn btn-primary" ng-click="createSheet('Custom'+newSheetNameSuffixC)">Create
+                            </button>
+                        </h4>
+                        <span ng-show="sheetForm.newSheetNameSuffixC.$error.pattern" class="text-danger">
+                            Only letters, numbers, "-", or "_" are allowed!
+                        </span>
+                        <span ng-show="sheetForm.newSheetNameSuffixC.$error.maxlength" class="text-danger">
+                            Maximum length has been exceeded!
+                        </span>
+                    </form>
+                </fieldset>
+            </span>
+                <div ng-show="debug">
+                    teamChoices = {{teamChoices}} <br>
+                    gradeList = {{gradeList}} <br>
+                    genderList = {{genderList}} <br>
+                    sfbList = {{sfbList}} <br>
+                    groupList = {{groupList}} <br>
+                    sheetSelected = {{sheetSelected}} <br>
+                    newSheet = {{newSheet}} <br>
+                    data = {{data}} <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--create modal for Add Players-->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="createModalPlayers">
+        <span class="modals-close-btn" ng-click="nullNewPlayerData(); toggleCreatePlayers()"></span>
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3>Add Players</h3>
+                <h4>Team
+                    <button ng-repeat="team in sheetSelected.teams"
+                            ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[newPlayerData.team==team]"
+                            ng-click="newPlayerData.team = team">{{team}}
+                    </button>
+                </h4>
+                <div ng-show="-1 < sheetSelected.teams.indexOf(newPlayerData.team)">
+                    <h4>Player Ids</h4>
+                    <table style="margin: auto; border-collapse: separate; border-spacing: 2px;">
+                        <tr ng-repeat="tens in [0,10,20,30,40,50,60,70,80,90]">
+                            <td ng-repeat="ones in [0,1,2,3,4,5,6,7,8,9]">
+                                <button ng-class="{true: 'btn btn-success btn-block sharp', false: 'btn btn-primary btn-block round'}
+                                            [-1 < playerIndexOf(newPlayerData.team,tens+ones)]"
+                                        ng-click="newPlayerData.id = tens+ones; saveNewPlayer()"
+                                        ng-disabled="-1 < playerIndexOf(newPlayerData.team,tens+ones)">{{tens+ones}}
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button class="btn btn-primary" ng-click="nullNewPlayerData(); toggleCreatePlayers()">Done
+                    </button>
+                </div>
+                <div ng-show="debug">
+                    sheetSelected.teams = {{sheetSelected.teams}}<br>
+                    newPlayerData = {{newPlayerData}} <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--edit modal for player team or id ; should match add player modal -->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="editModalPlayer">
+        <span class="modals-close-btn" ng-click="toggleEditPlayer()"></span>
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3>Edit Team or Id for {{playerDataSelected.team}} {{playerDataSelected.id}}</h3>
+                <h4>Select Team
+                    <button ng-repeat="team in sheetSelected.teams"
+                            ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[tmpTeam==team]"
+                            ng-click="editTmpTeam(team)">{{team}}
+                    </button>
+                </h4>
+                <div ng-show="tmpTeam">
+                    <h4>Select Id to apply change</h4>
+                    <table style="margin: auto; border-collapse: separate; border-spacing: 2px;">
+                        <tr ng-repeat="tens in [0,10,20,30,40,50,60,70,80,90]">
+                            <td ng-repeat="ones in [0,1,2,3,4,5,6,7,8,9]">
+                                <button ng-class="{true: 'btn btn-success btn-block sharp', false: 'btn btn-primary btn-block round'}
+                                           [-1 < playerIndexOf(tmpTeam,tens+ones)]"
+                                        ng-click="playerDataSelected.team = tmpTeam; playerDataSelected.id = tens+ones"
+                                        ng-disabled="-1 < playerIndexOf(tmpTeam,tens+ones)">{{tens+ones}}
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <button class="btn btn-primary" ng-click="toggleEditPlayer()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!--edit modal for player ratings -->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="editModalRatings">
+        <span class="modals-close-btn" ng-click="toggleEditRatings()"></span>
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3>Edit Ratings for Player: {{playerDataSelected.team}} {{playerDataSelected.id}}</h3>
+                <div class="row">
+                    <table style="margin: auto; border-collapse: separate; border-spacing: 5px;">
+                        <thead>
+                        <tr> <!-- does col matter here? -->
+                            <th ng-repeat="cat in sheetSelected.categories" class="col-sm-1"><h4>{{cat}}</h4>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="rating in reverse(sheetSelected.ratingValues)">
+                            <td ng-repeat="cat in sheetSelected.categories" class="col-sm-1">
+                                <button ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[playerDataSelected.ratings[cat]==rating]"
+                                        ng-click="setPlayerRating(cat,rating)">{{rating}}
+                                </button>
+                                <!-- Is getPlayerRating better?  I note that it's called before modal is loaded forcing 'undefined' handling
+                                <button ng-class="{true: 'btn btn-success sharp', false: 'btn btn-primary round'}[getPlayerRating(cat)==rating]"
+                                        ng-click="setPlayerRating(cat,rating)">{{rating}}
+                                </button> -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>{{sheetSelected.ratingTip}}</h4>
+                <br>
+                <button class="btn btn-primary" ng-click="toggleEditRatings()">Done</button>
+
+                <div ng-show="debug">
+                    playerDataSelected = {{playerDataSelected}} <br>
+                    ratingValues = {{sheetSelected.ratingValues}} <br>
+                    categories = {{sheetSelected.categories}} <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--edit modal for bubble player ratings -->
+    <div class="dialog2" style="text-align: center; z-index: 9999;" ng-show="editModalBubbleRanking">
+        <span class="modals-close-btn" ng-click="toggleBubbleRanking()"></span>
+        <div krn-wrapper>
+            <div class="container-fluid">
+                <h3>Edit Bubble Ranking for Player: {{playerDataSelected.team}} {{playerDataSelected.id}}</h3>
+                <div>
+                    <h4>{{sheetSelected.categories[0]}}</h4>
+                    <table style="margin: auto; border-collapse: separate; border-spacing: 2px;">
+                        <tr ng-repeat="tens in [0,5,10,15]">
+                            <td ng-repeat="ones in [1,2,3,4,5]">
+                                <button ng-class="{true: 'btn btn-success btn-block sharp', false: 'btn btn-primary btn-block round'}
+                                            [playerDataSelected.ratings[sheetSelected.categories[0]]==tens+ones+'']"
+                                        ng-click="setPlayerRating(sheetSelected.categories[0],tens+ones)">{{tens+ones+''}}
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <h4>{{sheetSelected.ratingTip}}</h4>
+                <br>
+                <button class="btn btn-primary" ng-click="toggleBubbleRanking()">Done</button>
+
+                <div ng-show="debug">
+                    playerDataSelected = {{playerDataSelected}} <br>
+                    ratingValues = {{sheetSelected.ratingValues}} <br>
+                    categories = {{sheetSelected.categories}} <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+
+<script src="js/libs.min.js"></script>
+
+
+<script src="js/app.min.js"></script>
+
+</body>
+</html>
